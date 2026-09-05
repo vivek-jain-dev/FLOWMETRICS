@@ -1,0 +1,30 @@
+{
+  "name": "flowmetrics-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Flowmetrics Full-Stack Application Monorepo",
+  "scripts": {
+    "dev": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\"",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start": "concurrently \"npm --prefix backend run start\" \"npm --prefix frontend run start\"",
+    "seed": "npm --prefix backend run seed",
+    "install:all": "npm install --prefix backend && npm install --prefix frontend"
+  },
+  "keywords": [
+    "flowmetrics",
+    "developer-productivity",
+    "engineering-metrics",
+    "nextjs",
+    "express",
+    "mongodb"
+  ],
+  "author": "Vivek Jain",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  }
+}
