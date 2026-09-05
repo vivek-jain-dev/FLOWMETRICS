@@ -1,5 +1,11 @@
 # ⚡ Flowmetrics - Engineering Productivity & Workload Analytics Platform
-**Author**: Vivek Jain
+
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-black?style=for-the-badge&logo=vercel)](https://flowmetrics-psi.vercel.app)
+[![API Status](https://img.shields.io/badge/Backend_API-Render-46E3B7?style=for-the-badge&logo=render)](https://flowmetrics-psi.vercel.app)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+
+> **Live Website:** 🌐 **[https://flowmetrics-psi.vercel.app](https://flowmetrics-psi.vercel.app)**  
+> **Author**: Vivek Jain ([@vivek-jain-dev](https://github.com/vivek-jain-dev))
 
 Flowmetrics is an enterprise-grade full-stack web application designed to help engineering leaders track deep work, eliminate cognitive friction, forecast sprint velocity, and balance team workload without intrusive surveillance.
 
