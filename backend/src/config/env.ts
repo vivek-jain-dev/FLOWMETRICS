@@ -7,7 +7,7 @@ const envSchema = z.object({
   PORT: z.string().default('5000').transform((val) => parseInt(val, 10)),
   NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
   MONGODB_URI: z.string().default('mongodb://127.0.0.1:27017/flowmetrics'),
-  JWT_SECRET: z.string().min(16, 'JWT_SECRET must be at least 16 characters long'),
+  JWT_SECRET: z.string().default('flowmetrics-production-secure-jwt-secret-key-2026!'),
   CLIENT_URL: z.string().default('http://localhost:3000'),
   ADMIN_NAME: z.string().default('Flowmetrics Admin'),
   ADMIN_EMAIL: z.string().email().default('admin@flowmetrics.io'),

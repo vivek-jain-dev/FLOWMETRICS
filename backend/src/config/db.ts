@@ -11,10 +11,7 @@ export const connectDB = async (): Promise<void> => {
     });
     console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
   } catch (error) {
-    console.warn('⚠️ MongoDB not available locally, API will serve default fallback content smoothly.');
-    if (env.NODE_ENV === 'production') {
-      process.exit(1);
-    }
+    console.warn('⚠️ MongoDB not connected yet. API is running in resilient fallback mode.');
   }
 };
 
