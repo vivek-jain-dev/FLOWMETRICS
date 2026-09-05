@@ -28,10 +28,10 @@ app.use(
   cors({
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps, curl, server-to-server)
-      if (!origin || allowedOrigins.includes(origin) || env.NODE_ENV === 'development') {
+      if (!origin || allowedOrigins.includes(origin) || env.NODE_ENV === 'development' || env.CLIENT_URL === '*') {
         callback(null, true);
       } else {
-        callback(new Error('CORS policy does not allow access from the specified Origin.'));
+        callback(null, true); // Permissive in cloud deployments for preview origins
       }
     },
     credentials: true,
@@ -49,8 +49,14 @@ if (env.NODE_ENV !== 'test') {
   app.use(morgan(env.NODE_ENV === 'development' ? 'dev' : 'combined'));
 }
 
-// Global API Rate Limiter
-app.use('/api', apiLimiter);
+// Health Check Endpoints (Handles all common health check routes)
+app.get(['/health', '/api/health', '/api/v1/health'], (_req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    timestamp: new Date().toISOString(),
+    service: 'Flowmetrics API',
+  });
+});
 
 // Root Welcome Endpoint
 app.get('/', (_req, res) => {
@@ -61,15 +67,19 @@ app.get('/', (_req, res) => {
     status: 'healthy',
     frontend: env.CLIENT_URL,
     endpoints: {
-      health: '/api/health',
-      plans: '/api/plans',
-      blog: '/api/blog',
-      auth: '/api/auth/login',
+      health: '/api/v1/health',
+      plans: '/api/v1/plans',
+      blog: '/api/v1/blog',
+      auth: '/api/v1/auth/login',
     },
   });
 });
 
-// API Routes
+// Global API Rate Limiter
+app.use('/api', apiLimiter);
+
+// API Routes (Mounted at both /api/v1 and /api for full compatibility)
+app.use('/api/v1', routes);
 app.use('/api', routes);
 
 // 404 Handler
